@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HR Dashboard — Unifina Group</title>
-    <link rel="stylesheet" href="css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
     <style>
-        body { background: var(--light-gray); }
+        body { background: #F8F8F8; }
 
-       .dashboard-header {
+        .dashboard-header {
             background: #000000;
             padding: 0 40px;
             height: 64px;
@@ -28,110 +28,112 @@
         }
 
         .dashboard-header .user-info {
-            color: var(--white);
-            font-size: 14px;
+            color: #ffffff;
+            font-size: 13px;
             display: flex;
             align-items: center;
-            gap: 16px;
+            gap: 20px;
         }
 
         .logout-btn {
             background: transparent;
-            border: 1px solid #ffffff;
+            border: 2px solid #ffffff;
             color: #ffffff;
-            padding: 6px 18px;
+            padding: 8px 20px;
             cursor: pointer;
             font-size: 12px;
-            letter-spacing: 0.5px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
             font-family: 'Inter', sans-serif;
             transition: all 0.25s ease;
         }
 
         .logout-btn:hover {
-            background: #000000;
-            color: #ffffff;
+            background: #ffffff;
+            color: #000000;
         }
+
         .dashboard-body {
             display: flex;
-            min-height: calc(100vh - 60px);
+            min-height: calc(100vh - 64px);
         }
 
         .sidebar {
-            width: 240px;
-            background: var(--white);
-            padding: 24px 0;
-            box-shadow: 2px 0 8px rgba(0,0,0,0.06);
+            width: 220px;
+            background: #ffffff;
+            border-right: 1px solid #E0E0E0;
+            padding: 32px 0;
         }
 
         .sidebar-item {
-            padding: 14px 24px;
+            padding: 12px 24px;
             cursor: pointer;
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--text-muted);
-            transition: var(--transition);
-            border-left: 3px solid transparent;
+            font-size: 13px;
+            font-weight: 500;
+            color: #555555;
+            transition: all 0.25s ease;
+            border-left: 2px solid transparent;
+            letter-spacing: 0.3px;
         }
 
         .sidebar-item:hover, .sidebar-item.active {
-            color: var(--primary);
-            border-left-color: var(--gold);
-            background: var(--light-gray);
+            color: #000000;
+            border-left-color: #000000;
+            background: #F8F8F8;
         }
 
         .main-content {
             flex: 1;
-            padding: 32px 40px;
+            padding: 40px;
         }
 
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
+            gap: 16px;
             margin-bottom: 32px;
         }
 
         .stat-card {
-            background: var(--white);
-            padding: 24px;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-            text-align: center;
+            background: #ffffff;
+            padding: 28px;
+            border: 1px solid #E0E0E0;
         }
 
         .stat-card .stat-number {
+            font-family: 'Playfair Display', serif;
             font-size: 36px;
-            font-weight: 800;
-            color: var(--primary);
-        }
-
-        .stat-card .stat-label {
-            font-size: 13px;
-            color: var(--text-muted);
-            margin-top: 4px;
-        }
-
-        .stat-card .stat-icon {
-            font-size: 28px;
+            font-weight: 700;
+            color: #000000;
+            line-height: 1;
             margin-bottom: 8px;
         }
 
+        .stat-card .stat-label {
+            font-size: 11px;
+            color: #999999;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .stat-card .stat-icon { display: none; }
+
         .section-card {
-            background: var(--white);
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-            padding: 24px;
-            margin-bottom: 24px;
+            background: #ffffff;
+            border: 1px solid #E0E0E0;
+            padding: 28px;
+            margin-bottom: 20px;
         }
 
         .section-title {
+            font-family: 'Playfair Display', serif;
             font-size: 18px;
             font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            color: #000000;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #E0E0E0;
         }
 
         .filters {
@@ -143,17 +145,17 @@
 
         .filters input, .filters select {
             padding: 8px 14px;
-            border: 2px solid #E5E7EB;
-            border-radius: 8px;
-            font-size: 14px;
+            border: 1px solid #E0E0E0;
+            font-size: 13px;
             outline: none;
+            font-family: 'Inter', sans-serif;
         }
 
         .filters input:focus, .filters select:focus {
-            border-color: var(--primary);
+            border-color: #000000;
         }
 
-       .filter-btn {
+        .filter-btn {
             padding: 8px 20px;
             background: #000000;
             color: #ffffff;
@@ -167,49 +169,67 @@
             transition: all 0.25s ease;
         }
 
-        .filter-btn:hover {
-            background: #333333;
-        }
+        .filter-btn:hover { background: #333333; }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            font-size: 14px;
+            font-size: 13px;
         }
 
         th {
-            background: var(--light-gray);
-            padding: 12px 16px;
+            background: #F8F8F8;
+            padding: 10px 16px;
             text-align: left;
-            font-weight: 700;
-            color: var(--primary);
-            font-size: 13px;
+            font-weight: 600;
+            color: #555555;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid #E0E0E0;
         }
 
         td {
             padding: 12px 16px;
-            border-bottom: 1px solid #F0F0F0;
-            color: var(--text-dark);
+            border-bottom: 1px solid #EEEEEE;
+            color: #1A1A1A;
         }
 
-        tr:hover td {
-            background: #FAFAFA;
-        }
+        tr:hover td { background: #F8F8F8; }
 
         .badge {
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 12px;
+            padding: 3px 10px;
+            font-size: 11px;
             font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
         }
 
-        .badge-active { background: #D4EDDA; color: #155724; }
-        .badge-late { background: #FFEEBA; color: #856404; }
-        .badge-onsite { background: #CCE5FF; color: #004085; }
-        .badge-remote { background: #E2CFEE; color: #6F42C1; }
-        .badge-hybrid { background: #D1ECF1; color: #0C5460; }
+        .badge-active { background: #E8F5E9; color: #2E7D32; }
+        .badge-late { background: #FFF8E1; color: #F57F17; }
+        .badge-onsite { background: #E3F2FD; color: #1565C0; }
+        .badge-remote { background: #F3E5F5; color: #6A1B9A; }
+        .badge-hybrid { background: #E0F2F1; color: #00695C; }
+        .badge-present { background: #E8F5E9; color: #2E7D32; }
+        .badge-checkedout { background: #EEEEEE; color: #555555; }
 
         .hidden { display: none; }
+
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            background: #2ECC71;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 6px;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.3; }
+            100% { opacity: 1; }
+        }
     </style>
 </head>
 <body>
@@ -224,10 +244,11 @@
 
     <div class="dashboard-body">
         <div class="sidebar">
-            <div class="sidebar-item active" onclick="showSection('overview')">📊 Overview</div>
-            <div class="sidebar-item" onclick="showSection('employees')">👥 Employees</div>
-            <div class="sidebar-item" onclick="showSection('attendance')">📋 Attendance</div>
-            <div class="sidebar-item" onclick="showSection('late-report')">⚠️ Late Report</div>
+            <div class="sidebar-item active" onclick="showSection('overview', this)">Overview</div>
+            <div class="sidebar-item" onclick="showSection('employees', this)">Employees</div>
+            <div class="sidebar-item" onclick="showSection('attendance', this)">Attendance</div>
+            <div class="sidebar-item" onclick="showSection('live', this)">Live Status</div>
+            <div class="sidebar-item" onclick="showSection('late-report', this)">Late Report</div>
         </div>
 
         <div class="main-content">
@@ -236,22 +257,18 @@
             <div id="section-overview">
                 <div class="stats-grid">
                     <div class="stat-card">
-                        <div class="stat-icon">👥</div>
                         <div class="stat-number" id="stat-employees">-</div>
                         <div class="stat-label">Total Employees</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-icon">🏢</div>
                         <div class="stat-number">2</div>
                         <div class="stat-label">Branches</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-icon">⚠️</div>
                         <div class="stat-number" id="stat-late">-</div>
                         <div class="stat-label">Late This Month</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-icon">📋</div>
                         <div class="stat-number" id="stat-attendance">-</div>
                         <div class="stat-label">Attendance Records</div>
                     </div>
@@ -265,7 +282,7 @@
                                 <th>Employee</th>
                                 <th>Department</th>
                                 <th>Branch</th>
-                                <th>Type</th>
+                                <th>Scan Type</th>
                                 <th>Time</th>
                                 <th>Status</th>
                             </tr>
@@ -282,33 +299,44 @@
                     <div class="filters">
                         <input type="text" id="search-input" placeholder="Search name or title...">
                         <select id="dept-input">
-    <option value="">All Departments</option>
-    <option>Executive & Strategy</option>
-    <option>Human Resources</option>
-    <option>Finance & Accounting</option>
-    <option>IT & Infrastructure</option>
-    <option>Legal & Compliance</option>
-    <option>Portfolio Management</option>
-    <option>Research & Analysis</option>
-    <option>Client Relations — Invest</option>
-    <option>Mortgage Origination</option>
-    <option>Mortgage Underwriting</option>
-    <option>Loan Servicing</option>
-    <option>Leasing Sales</option>
-    <option>Asset Management</option>
-    <option>Insurance Products</option>
-    <option>Claims & Risk</option>
-    <option>Branch Operations</option>
-    <option>Branch HR & Admin</option>
-    <option>Branch IT Support</option>
-    <option>Investment Advisory</option>
-    <option>Retail Investments</option>
-    <option>Mortgage Sales — NC</option>
-    <option>Property Valuation</option>
-    <option>Leasing Advisory — NC</option>
-    <option>Insurance Sales — NC</option>
-    <option>Auto & Home Insurance</option>
-</select>
+                            <option value="">All Departments</option>
+                            <option>Executive & Strategy</option>
+                            <option>Human Resources</option>
+                            <option>Finance & Accounting</option>
+                            <option>IT & Infrastructure</option>
+                            <option>Legal & Compliance</option>
+                            <option>Portfolio Management</option>
+                            <option>Research & Analysis</option>
+                            <option>Client Relations — Invest</option>
+                            <option>Mortgage Origination</option>
+                            <option>Mortgage Underwriting</option>
+                            <option>Loan Servicing</option>
+                            <option>Leasing Sales</option>
+                            <option>Asset Management</option>
+                            <option>Insurance Products</option>
+                            <option>Claims & Risk</option>
+                            <option>Branch Operations</option>
+                            <option>Branch HR & Admin</option>
+                            <option>Branch IT Support</option>
+                            <option>Investment Advisory</option>
+                            <option>Retail Investments</option>
+                            <option>Mortgage Sales — NC</option>
+                            <option>Property Valuation</option>
+                            <option>Leasing Advisory — NC</option>
+                            <option>Insurance Sales — NC</option>
+                            <option>Auto & Home Insurance</option>
+                        </select>
+                        <select id="arrangement-input">
+                            <option value="">All Arrangements</option>
+                            <option value="On-Site">On-Site</option>
+                            <option value="Hybrid">Hybrid</option>
+                            <option value="Remote">Remote</option>
+                        </select>
+                        <select id="branch-input">
+                            <option value="">All Branches</option>
+                            <option value="Cairo">Cairo HQ</option>
+                            <option value="New Cairo">New Cairo Branch</option>
+                        </select>
                         <button class="filter-btn" onclick="loadEmployees()">Search</button>
                         <button class="filter-btn" style="background:#6C757D" onclick="clearFilters()">Clear</button>
                     </div>
@@ -355,6 +383,45 @@
                 </div>
             </div>
 
+            <!-- LIVE STATUS -->
+            <div id="section-live" class="hidden">
+                <div class="section-card">
+                    <div class="section-title">
+                        <span><span class="live-dot"></span>Live Office Status — <span id="live-date">Loading...</span></span>
+                        <button class="filter-btn" onclick="loadLiveStatus()">Refresh</button>
+                    </div>
+
+                    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-bottom:28px;">
+                        <div style="background:#E8F5E9; padding:20px; text-align:center; border:1px solid #C8E6C9;">
+                            <div style="font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#2E7D32;" id="live-present">-</div>
+                            <div style="font-size:11px; text-transform:uppercase; letter-spacing:1px; color:#2E7D32; margin-top:4px;">Currently In Office</div>
+                        </div>
+                        <div style="background:#FFF8E1; padding:20px; text-align:center; border:1px solid #FFECB3;">
+                            <div style="font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#F57F17;" id="live-late">-</div>
+                            <div style="font-size:11px; text-transform:uppercase; letter-spacing:1px; color:#F57F17; margin-top:4px;">Arrived Late Today</div>
+                        </div>
+                        <div style="background:#EEEEEE; padding:20px; text-align:center; border:1px solid #E0E0E0;">
+                            <div style="font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#555555;" id="live-left">-</div>
+                            <div style="font-size:11px; text-transform:uppercase; letter-spacing:1px; color:#555555; margin-top:4px;">Checked Out</div>
+                        </div>
+                    </div>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Employee</th>
+                                <th>Department</th>
+                                <th>Branch</th>
+                                <th>Check In</th>
+                                <th>Check Out</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="live-table"></tbody>
+                    </table>
+                </div>
+            </div>
+
             <!-- LATE REPORT -->
             <div id="section-late-report" class="hidden">
                 <div class="section-card">
@@ -374,10 +441,11 @@
             </div>
 
         </div>
-        <!-- EMPLOYEE PROFILE MODAL -->
+    </div>
+
+    <!-- EMPLOYEE PROFILE MODAL -->
     <div id="emp-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:9999; overflow-y:auto;">
         <div style="background:#fff; max-width:800px; margin:40px auto; padding:0; position:relative;">
-            
             <div style="background:#000; padding:32px 40px; display:flex; justify-content:space-between; align-items:center;">
                 <div>
                     <div style="font-size:11px; letter-spacing:3px; color:#C9A84C; text-transform:uppercase; margin-bottom:8px;">Employee Profile</div>
@@ -386,10 +454,8 @@
                 </div>
                 <button onclick="closeModal()" style="background:transparent; border:1px solid rgba(255,255,255,0.4); color:#fff; padding:8px 20px; cursor:pointer; font-size:13px; font-family:'Inter',sans-serif;">Close</button>
             </div>
-
             <div style="padding:40px;">
                 <div style="display:grid; grid-template-columns:1fr 1fr; gap:32px; margin-bottom:32px;">
-                    
                     <div>
                         <div style="font-size:11px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:#8F5A39; margin-bottom:16px; padding-bottom:8px; border-bottom:1px solid #eee;">Personal Information</div>
                         <table style="width:100%; font-size:14px;">
@@ -402,7 +468,6 @@
                             <tr><td style="padding:6px 0; color:#999;">National ID</td><td id="modal-nid" style="font-weight:600;"></td></tr>
                         </table>
                     </div>
-
                     <div>
                         <div style="font-size:11px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:#8F5A39; margin-bottom:16px; padding-bottom:8px; border-bottom:1px solid #eee;">Employment Details</div>
                         <table style="width:100%; font-size:14px;">
@@ -415,9 +480,7 @@
                             <tr><td style="padding:6px 0; color:#999;">Status</td><td id="modal-status" style="font-weight:600;"></td></tr>
                         </table>
                     </div>
-
                 </div>
-
                 <div style="margin-bottom:32px;">
                     <div style="font-size:11px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:#8F5A39; margin-bottom:16px; padding-bottom:8px; border-bottom:1px solid #eee;">Compensation & RFID</div>
                     <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:16px;">
@@ -435,10 +498,8 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
-    </div>
     </div>
 
     <script>
@@ -454,15 +515,16 @@
             return { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' };
         }
 
-        function showSection(name) {
+        function showSection(name, el) {
             document.querySelectorAll('[id^="section-"]').forEach(s => s.classList.add('hidden'));
             document.getElementById(`section-${name}`).classList.remove('hidden');
             document.querySelectorAll('.sidebar-item').forEach(s => s.classList.remove('active'));
-            event.target.classList.add('active');
+            el.classList.add('active');
 
             if (name === 'employees') loadEmployees();
             if (name === 'attendance') loadAttendance();
             if (name === 'late-report') loadLateReport();
+            if (name === 'live') loadLiveStatus();
         }
 
         function logout() {
@@ -516,41 +578,45 @@
             }
         }
 
-       async function loadEmployees() {
-    const search = document.getElementById('search-input').value.trim();
-    const dept = document.getElementById('dept-input').value.trim();
-    
-    let url = `${API}/api/hr/employees/?`;
-    if (search) url += `search=${encodeURIComponent(search)}&`;
-    if (dept) url += `department=${encodeURIComponent(dept)}&`;
+        async function loadEmployees() {
+            const search = document.getElementById('search-input').value.trim();
+            const dept = document.getElementById('dept-input').value.trim();
+            const arrangement = document.getElementById('arrangement-input').value.trim();
+            const branch = document.getElementById('branch-input').value.trim();
 
-    try {
-        const res = await fetch(url, { headers: authHeaders() });
-        const employees = await res.json();
-        const tbody = document.getElementById('employees-table');
-        tbody.innerHTML = '';
-        
-        if (employees.length === 0) {
-            tbody.innerHTML = '<tr><td colspan="6" style="text-align:center; color:#999; padding:24px;">No employees found</td></tr>';
-            return;
+            let url = `${API}/api/hr/employees/?`;
+            if (search) url += `search=${encodeURIComponent(search)}&`;
+            if (dept) url += `department=${encodeURIComponent(dept)}&`;
+            if (arrangement) url += `arrangement=${encodeURIComponent(arrangement)}&`;
+            if (branch) url += `branch=${encodeURIComponent(branch)}&`;
+
+            try {
+                const res = await fetch(url, { headers: authHeaders() });
+                const employees = await res.json();
+                const tbody = document.getElementById('employees-table');
+                tbody.innerHTML = '';
+
+                if (employees.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="6" style="text-align:center; color:#999; padding:24px;">No employees found</td></tr>';
+                    return;
+                }
+
+                employees.forEach(e => {
+                    tbody.innerHTML += `
+                        <tr style="cursor:pointer;" onclick="viewEmployee(${e.employee_id})">
+                            <td><strong style="color:#004B87; text-decoration:underline;">${e.full_name}</strong></td>
+                            <td>${e.job_title}</td>
+                            <td>${e.department}</td>
+                            <td>${e.branch_name}</td>
+                            <td>${arrangementBadge(e.work_arrangement)}</td>
+                            <td><span class="badge badge-active">${e.status}</span></td>
+                        </tr>
+                    `;
+                });
+            } catch(e) {
+                console.error('Failed to load employees:', e);
+            }
         }
-        
-      employees.forEach(e => {
-            tbody.innerHTML += `
-                <tr style="cursor:pointer;" onclick="viewEmployee(${e.employee_id})">
-                    <td><strong style="color:#004B87; text-decoration:underline;">${e.full_name}</strong></td>
-                    <td>${e.job_title}</td>
-                    <td>${e.department}</td>
-                    <td>${e.branch_name}</td>
-                    <td>${arrangementBadge(e.work_arrangement)}</td>
-                    <td><span class="badge badge-active">${e.status}</span></td>
-                </tr>
-            `;
-        });
-    } catch(e) {
-        console.error('Failed to load employees:', e);
-    }
-}
 
         async function loadAttendance(showAll = false) {
             const date = document.getElementById('date-filter').value;
@@ -577,6 +643,74 @@
             });
         }
 
+        async function loadLiveStatus() {
+            try {
+                const res = await fetch(`${API}/api/hr/attendance/`, { headers: authHeaders() });
+                const records = await res.json();
+
+                const dates = [...new Set(records.map(r => r.work_date))].sort().reverse();
+const latestDate = dates[0];
+const todayRecords = records.filter(r => r.work_date === latestDate);
+
+                const employeeMap = {};
+                todayRecords.forEach(r => {
+                    if (!employeeMap[r.full_name]) {
+                        employeeMap[r.full_name] = {
+                            full_name: r.full_name,
+                            department: r.department,
+                            branch: r.branch,
+                            check_in: null,
+                            check_out: null,
+                            status: r.status
+                        };
+                    }
+                    if (r.scan_type === 'Check-In') employeeMap[r.full_name].check_in = r.scan_time;
+                    if (r.scan_type === 'Check-Out') employeeMap[r.full_name].check_out = r.scan_time;
+                });
+
+                const employees = Object.values(employeeMap);
+                document.getElementById('live-date').textContent = latestDate;
+                const present = employees.filter(e => e.check_in && !e.check_out).length;
+                const late = employees.filter(e => e.status === 'Late').length;
+                const left = employees.filter(e => e.check_out).length;
+
+                document.getElementById('live-present').textContent = present;
+                document.getElementById('live-late').textContent = late;
+                document.getElementById('live-left').textContent = left;
+
+                const tbody = document.getElementById('live-table');
+                tbody.innerHTML = '';
+
+                if (employees.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="6" style="text-align:center; color:#999; padding:24px;">No attendance records for today</td></tr>';
+                    return;
+                }
+
+                employees.forEach(e => {
+                    let liveBadge = '';
+                    if (e.check_in && !e.check_out) {
+                        liveBadge = `<span class="badge badge-present">In Office</span>`;
+                    } else if (e.check_out) {
+                        liveBadge = `<span class="badge badge-checkedout">Checked Out</span>`;
+                    }
+
+                    tbody.innerHTML += `
+                        <tr>
+                            <td><strong>${e.full_name}</strong></td>
+                            <td>${e.department}</td>
+                            <td>${e.branch}</td>
+                            <td>${e.check_in || '—'}</td>
+                            <td>${e.check_out || '—'}</td>
+                            <td>${liveBadge} ${e.status === 'Late' ? '<span class="badge badge-late">Late</span>' : ''}</td>
+                        </tr>
+                    `;
+                });
+
+            } catch(e) {
+                console.error('Failed to load live status:', e);
+            }
+        }
+
         async function loadLateReport() {
             const res = await fetch(`${API}/api/hr/attendance/late-report`, { headers: authHeaders() });
             const records = await res.json();
@@ -597,10 +731,11 @@
         function clearFilters() {
             document.getElementById('search-input').value = '';
             document.getElementById('dept-input').value = '';
+            document.getElementById('arrangement-input').value = '';
+            document.getElementById('branch-input').value = '';
             loadEmployees();
         }
 
-        loadOverview();
         async function viewEmployee(id) {
             try {
                 const res = await fetch(`${API}/api/hr/employees/${id}`, { headers: authHeaders() });
@@ -642,6 +777,8 @@
             const modal = document.getElementById('emp-modal');
             if (e.target === modal) closeModal();
         }
+
+        loadOverview();
     </script>
 
 </body>

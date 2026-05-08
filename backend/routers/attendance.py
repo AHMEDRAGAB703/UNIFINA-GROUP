@@ -16,11 +16,17 @@ def get_attendance(
     cursor = conn.cursor(dictionary=True)
 
     query = """
-        SELECT a.attendance_id, CONCAT(e.first_name,' ',e.last_name) AS full_name,
-               b.branch_name, d.name AS department,
-               DATE(a.scan_time) AS work_date, a.scan_type,
-               TIME(a.scan_time) AS scan_time, a.attendance_type,
-               a.scan_source, a.status, a.reader_location
+        SELECT a.attendance_id, 
+               CONCAT(e.first_name,' ',e.last_name) AS full_name,
+               b.branch_name AS branch,
+               d.name AS department,
+               DATE(a.scan_time) AS work_date, 
+               a.scan_type,
+               TIME_FORMAT(TIME(a.scan_time), '%H:%i') AS scan_time,
+               a.attendance_type,
+               a.scan_source, 
+               a.status, 
+               a.reader_location
         FROM attendance a
         JOIN employees e ON a.employee_id = e.employee_id
         JOIN branches b ON a.branch_id = b.branch_id
@@ -43,7 +49,6 @@ def get_attendance(
     cursor.close()
     conn.close()
     return records
-
 @router.get("/late-report")
 def get_late_report(hr_user = Depends(require_hr)):
     conn = get_connection()

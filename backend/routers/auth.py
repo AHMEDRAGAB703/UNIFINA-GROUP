@@ -28,12 +28,14 @@ def login(data: LoginRequest):
     return {"access_token": token, "role": user["role"]}
 
 @router.post("/signup")
-def signup(data: SignupRequest):
+def signup(data: SignupRequest, admin_code: str = "UNIFINA-ADMIN-2025"):
+    if admin_code != "UNIFINA-ADMIN-2025":
+        raise HTTPException(status_code=403, detail="Invalid admin code")
     conn = get_connection()
     cursor = conn.cursor()
     try:
         cursor.execute(
-            "INSERT INTO users (email, password_hash, full_name, role) VALUES (%s, %s, %s, 'customer')",
+            "INSERT INTO users (email, password_hash, full_name, role) VALUES (%s, %s, %s, 'hr')",
             (data.email, data.password, data.full_name)
         )
         conn.commit()
@@ -42,4 +44,4 @@ def signup(data: SignupRequest):
     finally:
         cursor.close()
         conn.close()
-    return {"message": "Account created successfully"}
+    return {"message": "HR account created successfully"}
