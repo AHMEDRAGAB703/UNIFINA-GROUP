@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services — Unifina Group</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .services-hero {
+            background: var(--black);
+            color: var(--white);
+            padding: 100px 60px;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .services-hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(135deg, rgba(0,75,135,0.5) 0%, rgba(0,0,0,0.85) 100%);
+            z-index: 1;
+        }
+
+        .services-hero > * { position: relative; z-index: 2; }
+
+        .services-hero h1 {
+            font-size: 52px;
+            color: var(--white);
+            margin-bottom: 16px;
+        }
+
+        .services-hero p {
+            font-size: 17px;
+            color: rgba(255,255,255,0.6);
+            font-weight: 300;
+        }
+
+        .services-detail {
+            background: var(--white);
+        }
+
+        .service-detail-card {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 480px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .service-detail-card:nth-child(even) .service-photo {
+            order: 2;
+        }
+
+        .service-detail-card:nth-child(even) .service-info {
+            order: 1;
+        }
+
+        .service-photo {
+            overflow: hidden;
+        }
+
+        .service-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.6s ease;
+        }
+
+        .service-photo:hover img {
+            transform: scale(1.04);
+        }
+
+        .service-info {
+            padding: 72px 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: var(--white);
+        }
+
+        .service-detail-card:nth-child(even) .service-info {
+            background: var(--travertine);
+        }
+
+        .service-num {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 3px;
+            color: var(--bronze);
+            margin-bottom: 16px;
+            text-transform: uppercase;
+        }
+
+        .service-info h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: var(--black);
+        }
+
+        .service-info p {
+            color: var(--gray-600);
+            line-height: 1.8;
+            margin-bottom: 28px;
+            font-size: 15px;
+        }
+
+        .service-features {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .service-features li {
+            background: var(--gray-200);
+            padding: 5px 14px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--gray-800);
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+        }
+
+        .cta-section {
+            background: var(--navy);
+            color: var(--white);
+            text-align: center;
+            padding: 100px 60px;
+        }
+
+        .cta-section h2 {
+            font-size: 40px;
+            color: var(--white);
+            margin-bottom: 16px;
+        }
+
+        .cta-section p {
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 40px;
+            font-size: 16px;
+        }
+
+        @media (max-width: 768px) {
+            .service-detail-card {
+                grid-template-columns: 1fr;
+            }
+            .service-detail-card:nth-child(even) .service-photo { order: 1; }
+            .service-detail-card:nth-child(even) .service-info { order: 2; }
+            .service-photo { height: 260px; }
+            .service-info { padding: 40px 24px; }
+            .services-hero { padding: 60px 24px; }
+            .services-hero h1 { font-size: 34px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-logo">UNIFINA GROUP</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="login.html" class="btn-login" id="nav-login">Login</a></li>
+        </ul>
+    </nav>
+
+    <div class="services-hero">
+        <div class="section-label">What We Offer</div>
+        <h1>Our Services</h1>
+        <p>Comprehensive financial and insurance solutions for individuals and businesses across Egypt.</p>
+    </div>
+
+    <div class="services-detail">
+
+        <div class="service-detail-card">
+            <div class="service-photo">
+                <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=900&q=80" alt="Investment Management">
+            </div>
+            <div class="service-info">
+                <div class="service-num">01</div>
+                <h2>Investment Management</h2>
+                <p>Our expert portfolio managers combine deep market research with proven strategies to grow your wealth. Whether you are an individual investor or a corporate client, we tailor investment solutions to match your risk appetite and financial goals.</p>
+                <ul class="service-features">
+                    <li>Portfolio Management</li>
+                    <li>Market Research</li>
+                    <li>Risk Analysis</li>
+                    <li>Client Advisory</li>
+                    <li>Retail Investments</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="service-detail-card">
+            <div class="service-photo">
+                <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=900&q=80" alt="Home Financing">
+            </div>
+            <div class="service-info">
+                <div class="service-num">02</div>
+                <h2>Home Financing</h2>
+                <p>Make your dream home a reality with our flexible mortgage solutions. From initial application to property valuation and loan servicing, our specialists guide you through every step of the home financing process.</p>
+                <ul class="service-features">
+                    <li>Mortgage Origination</li>
+                    <li>Property Valuation</li>
+                    <li>Loan Servicing</li>
+                    <li>Underwriting</li>
+                    <li>Refinancing</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="service-detail-card">
+            <div class="service-photo">
+                <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=900&q=80" alt="Equipment Leasing">
+            </div>
+            <div class="service-info">
+                <div class="service-num">03</div>
+                <h2>Equipment Leasing</h2>
+                <p>Expand your business without the burden of ownership. Our equipment leasing solutions give businesses access to the tools they need with flexible payment structures and expert advisory support.</p>
+                <ul class="service-features">
+                    <li>Leasing Advisory</li>
+                    <li>Asset Management</li>
+                    <li>Fleet Leasing</li>
+                    <li>Medical Equipment</li>
+                    <li>Industrial Machinery</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="service-detail-card">
+            <div class="service-photo">
+                <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=900&q=80" alt="Insurance">
+            </div>
+            <div class="service-info">
+                <div class="service-num">04</div>
+                <h2>Insurance</h2>
+                <p>Protect what matters most with our comprehensive insurance products. From life and health to auto and home, our insurance specialists design coverage plans that give you real peace of mind.</p>
+                <ul class="service-features">
+                    <li>Life Insurance</li>
+                    <li>Auto Insurance</li>
+                    <li>Home Insurance</li>
+                    <li>Claims Management</li>
+                    <li>Risk Assessment</li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="cta-section">
+        <div class="section-label" style="color: rgba(255,255,255,0.5);">Take the Next Step</div>
+        <h2>Ready to Get Started?</h2>
+        <p>Speak with one of our specialists — no obligation, no pressure.</p>
+        <div style="display:flex; gap:16px; justify-content:center">
+            <a href="contact.html" class="btn-primary">Book a Consultation</a>
+            <a href="https://wa.me/201000000000" class="btn-whatsapp" target="_blank">WhatsApp Us</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2025 Unifina Group. All rights reserved. | Cairo HQ & New Cairo Branch</p>
+    </footer>
+
+    <script>
+        const token = localStorage.getItem('access_token');
+        const role = localStorage.getItem('user_role');
+        if (token && (role === 'hr' || role === 'admin')) {
+            document.getElementById('nav-login').textContent = 'Dashboard';
+            document.getElementById('nav-login').href = 'hr-dashboard.html';
+        }
+    </script>
+</body>
+</html>

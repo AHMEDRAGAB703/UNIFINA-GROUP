@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About — Unifina Group</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        .about-hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: var(--white);
+            padding: 80px 60px;
+            text-align: center;
+        }
+        .about-hero h1 { font-size: 48px; font-weight: 800; margin-bottom: 16px; }
+        .about-hero p { font-size: 18px; color: var(--gold); }
+        .about-content { max-width: 900px; margin: 60px auto; padding: 0 60px; }
+        .about-content h2 { font-size: 28px; color: var(--primary); font-weight: 700; margin-bottom: 16px; }
+        .about-content p { color: var(--text-muted); line-height: 1.8; margin-bottom: 32px; font-size: 16px; }
+        .branches-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 40px; }
+        .branch-card {
+            background: var(--light-gray); padding: 32px;
+            border-radius: var(--border-radius); border-left: 4px solid var(--gold);
+        }
+        .branch-card h3 { color: var(--primary); font-size: 18px; margin-bottom: 12px; }
+        .branch-card p { color: var(--text-muted); font-size: 14px; line-height: 1.6; margin: 0; }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-logo">UNIFINA GROUP</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="login.html" class="btn-login">Login</a></li>
+        </ul>
+    </nav>
+
+    <div class="about-hero">
+        <h1>About Unifina Group</h1>
+        <p>Egypt's trusted partner in finance and insurance since 2012</p>
+    </div>
+
+    <div class="about-content">
+        <h2>Who We Are</h2>
+        <p>Unifina Group is a leading Egyptian financial services company headquartered in Maadi, Cairo. Since our founding in 2012, we have grown to serve over 10,000 clients across Egypt through our four core business lines: Investment Management, Home Financing, Equipment Leasing, and Insurance.</p>
+
+        <h2>Our Mission</h2>
+        <p>To provide smart, accessible, and trustworthy financial solutions that empower individuals and businesses to achieve their goals. We combine deep local expertise with international standards to deliver results that matter.</p>
+
+        <h2>Our Business Lines</h2>
+        <p>We operate across four specialized divisions — Investment Management for portfolio growth, Home Financing for property dreams, Equipment Leasing for business expansion, and Insurance for comprehensive protection. Each division is staffed by certified professionals dedicated to your financial success.</p>
+
+        <h2>Our Branches</h2>
+        <div class="branches-grid">
+            <div class="branch-card">
+                <h3>🏢 Cairo HQ — Maadi</h3>
+                <p>15 El-Lasilky St, Maadi, Cairo<br>
+                Phone: 02-2520-9000<br>
+                Email: hq@unifina.com.eg<br>
+                Established: January 2012</p>
+            </div>
+            <div class="branch-card">
+                <h3>🏢 New Cairo Branch</h3>
+                <p>Building 7, Southern 90th St, New Cairo<br>
+                Phone: 02-2550-9100<br>
+                Email: newcairo@unifina.com.eg<br>
+                Established: June 2016</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2025 Unifina Group. All rights reserved.</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unifina Group — Smart Financial Solutions</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-logo">UNIFINA GROUP</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="login.html" class="btn-login">Login</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero" style="background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1600&q=80'); background-size: cover; background-position: center;">
+        <div class="hero-eyebrow">Established 2012 — Cairo, Egypt</div>
+        <h1>Your Trusted Partner in Finance & Insurance</h1>
+        <p>Investment management, home financing, equipment leasing, and comprehensive insurance — all under one roof.</p>
+        <div class="hero-buttons">
+            <a href="contact.html" class="btn-primary">Get Started</a>
+            <a href="services.html" class="btn-secondary">Our Services</a>
+        </div>
+    </section>
+
+    <section class="services" id="services">
+        <div class="section-label">What We Offer</div>
+        <h2>Comprehensive Financial Solutions</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-number">01</div>
+                <div class="service-divider"></div>
+                <h3>Investment Management</h3>
+                <p>Expert portfolio management and research-driven strategies to grow and protect your wealth.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-number">02</div>
+                <div class="service-divider"></div>
+                <h3>Home Financing</h3>
+                <p>Flexible mortgage solutions and property valuation services tailored to your needs.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-number">03</div>
+                <div class="service-divider"></div>
+                <h3>Equipment Leasing</h3>
+                <p>Smart leasing solutions that give businesses access to the tools they need to grow.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-number">04</div>
+                <div class="service-divider"></div>
+                <h3>Life Insurance</h3>
+                <p>Comprehensive life coverage designed to secure your family's financial future.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-number">05</div>
+                <div class="service-divider"></div>
+                <h3>Auto Insurance</h3>
+                <p>Complete vehicle protection with competitive rates and fast claims processing.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-number">06</div>
+                <div class="service-divider"></div>
+                <h3>Home Insurance</h3>
+                <p>Full protection for your property with coverage plans built around your lifestyle.</p>
+            </div>
+        </div>
+    </section>
+    <section class="trust">
+        <div class="trust-stat"><span>10,000+</span><p>Trusted Clients</p></div>
+        <div class="trust-stat"><span>15+</span><p>Years of Experience</p></div>
+        <div class="trust-stat"><span>2</span><p>Branches in Cairo</p></div>
+        <div class="trust-stat"><span>50+</span><p>Expert Professionals</p></div>
+    </section>
+    <section class="purpose-section">
+        <div class="purpose-image">
+            <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=900&q=80" alt="Professional team meeting">
+        </div>
+        <div class="purpose-text">
+            <div class="section-label">Our Purpose</div>
+            <h2>Serving Our Clients with Integrity</h2>
+            <p>We are united by a purpose that weaves together the value we create and how we do business — delivering results for the clients, communities, and economy we serve across Egypt.</p>
+            <a href="about.html" class="btn-dark" style="margin-top: 32px; display: inline-block;">Learn About Us &rarr;</a>
+        </div>
+    </section>
+
+    <section class="team" id="team">
+        <h2>Meet Our Experts</h2>
+        <div class="team-grid" id="team-grid">
+            <p>Loading team...</p>
+        </div>
+    </section>
+
+    <section class="contact-cta">
+        <h2>Ready to Get Started?</h2>
+        <p>Speak with one of our specialists — no obligation, no pressure.</p>
+        <div class="contact-buttons">
+            <a href="contact.html" class="btn-primary">Book a Consultation</a>
+            <a href="https://wa.me/201000000000" class="btn-whatsapp" target="_blank">WhatsApp Us</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2025 Unifina Group. All rights reserved. | Cairo HQ & New Cairo Branch</p>
+    </footer>
+
+    <script>
+        const API = 'http://127.0.0.1:8000';
+
+        async function loadTeam() {
+            try {
+                const res = await fetch(`${API}/api/public/team`);
+                const team = await res.json();
+                const grid = document.getElementById('team-grid');
+                grid.innerHTML = '';
+                team.slice(0, 8).forEach(member => {
+                    const initials = member.full_name.split(' ').map(n => n[0]).join('').slice(0,2);
+                    grid.innerHTML += `
+                        <div class="team-card">
+                            <div class="team-avatar">${initials}</div>
+                            <h4>${member.full_name}</h4>
+                            <p>${member.job_title}</p>
+                            <p style="color: #C9A84C; font-size:12px; margin-top:4px">${member.department}</p>
+                        </div>
+                    `;
+                });
+            } catch(e) {
+                document.getElementById('team-grid').innerHTML = '<p>Unable to load team.</p>';
+            }
+        }
+
+        loadTeam();
+        const token = localStorage.getItem('access_token');
+        const role = localStorage.getItem('user_role');
+        if (token && (role === 'hr' || role === 'admin')) {
+            const loginBtn = document.querySelector('.btn-login');
+            loginBtn.textContent = 'Dashboard';
+            loginBtn.href = 'hr-dashboard.html';
+        }
+    </script>
+
+</body>
+</html>

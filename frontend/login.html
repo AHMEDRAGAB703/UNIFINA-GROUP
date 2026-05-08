@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login — Unifina Group</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        .login-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+        }
+
+        .login-box {
+            background: var(--white);
+            padding: 48px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            width: 100%;
+            max-width: 420px;
+        }
+
+        .login-logo {
+            text-align: center;
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .login-subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            margin-bottom: 32px;
+            font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #E5E7EB;
+            border-radius: 8px;
+            font-size: 15px;
+            transition: var(--transition);
+            outline: none;
+        }
+
+        .form-group input:focus {
+            border-color: var(--primary);
+        }
+
+.login-btn {
+            width: 100%;
+            padding: 14px;
+            background: var(--black);
+            color: var(--white);
+            border: 2px solid var(--black);
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-family: 'Inter', sans-serif;
+            transition: var(--transition);
+            margin-top: 8px;
+        }
+
+        .login-btn:hover {
+            background: transparent;
+            color: var(--black);
+        }
+
+        .error-msg {
+            color: #e74c3c;
+            text-align: center;
+            font-size: 14px;
+            margin-top: 12px;
+            display: none;
+        }
+
+        .back-link {
+            text-align: center;
+            margin-top: 24px;
+            font-size: 14px;
+        }
+
+        .back-link a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-page">
+        <div class="login-box">
+            <div class="login-logo">UNIFINA GROUP</div>
+            <div class="login-subtitle">Sign in to your account</div>
+
+            <div class="form-group">
+                <label>Email Address</label>
+                <input type="email" id="email" placeholder="your@email.com">
+            </div>
+
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" id="password" placeholder="••••••••">
+            </div>
+
+            <button class="login-btn" onclick="handleLogin()">Sign In</button>
+            <div class="error-msg" id="error-msg">Invalid email or password</div>
+
+            <div class="back-link">
+                <a href="index.html">← Back to website</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API = 'http://127.0.0.1:8000';
+
+        async function handleLogin() {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const errorMsg = document.getElementById('error-msg');
+
+            if (!email || !password) {
+                errorMsg.textContent = 'Please fill in all fields';
+                errorMsg.style.display = 'block';
+                return;
+            }
+
+            try {
+                const res = await fetch(`${API}/api/auth/login`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+
+                const data = await res.json();
+
+                if (res.ok) {
+                    localStorage.setItem('access_token', data.access_token);
+                    localStorage.setItem('user_role', data.role);
+
+                    if (data.role === 'hr' || data.role === 'admin') {
+                        window.location.href = 'hr-dashboard.html';
+                    } else {
+                        window.location.href = 'index.html';
+                    }
+                } else {
+                    errorMsg.textContent = 'Invalid email or password';
+                    errorMsg.style.display = 'block';
+                }
+            } catch(e) {
+                errorMsg.textContent = 'Cannot connect to server';
+                errorMsg.style.display = 'block';
+            }
+        }
+
+        document.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') handleLogin();
+        });
+    </script>
+
+</body>
+</html>
